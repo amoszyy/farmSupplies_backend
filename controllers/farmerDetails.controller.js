@@ -8,7 +8,7 @@ const registerFarmer = (req, res)=>{
     form.save((err) => {
       if (err) {
         console.log(err);
-        res.send({ message: "unable to register", status: false });
+        res.send({ message: "unable to register", status: false, err });
   
         console.log("operation failed");
       } else {
