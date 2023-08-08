@@ -1,5 +1,5 @@
 const express = require("express")
-const farmerModel = require("../models/farmerModels.controller")
+const farmerModel = require("../models/farmerModels")
 
 const registerFarmer = (req, res)=>{
     console.log(req.body);
