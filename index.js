@@ -12,6 +12,7 @@ app.use(express.json())
 
 const PORT = process.env.PORT
 const URI = process.env.MONGO_URI
+
 mongoose.connect(URI, (err)=>{
     if(err){
         console.log("an error occured")

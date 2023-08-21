@@ -1,5 +1,8 @@
 const express = require("express")
 const farmerModel = require("../models/farmerModels")
+let jwt = require("jsonwebtoken")
+
+
 
 const registerFarmer = (req, res)=>{
     console.log(req.body);
@@ -24,7 +27,7 @@ const registerFarmer = (req, res)=>{
 }
 
 const authenticateFarmer =(req, res)=>{
-let { password } = req.body;
+let {email, password } = req.body;
 farmerModel.findOne({email:req.body.email}, (err, user) => {
   if (err) {
     res.send({ message: "server error", status:false});
@@ -36,10 +39,13 @@ farmerModel.findOne({email:req.body.email}, (err, user) => {
           res.send({ message: "Server error", status:false});
         } else {
           if (same) {
+            let secret = process.env.SECRET
+            let token = jwt.sign({email}, secret, {expiresIn:'1h'})
             res.send({
               user,
               message: "farmer logged in successfully",
               status: true,
+              token
             });
             console.log("correct");
           } else {
@@ -50,9 +56,10 @@ farmerModel.findOne({email:req.body.email}, (err, user) => {
       });
     } else {
       res.send({ message:"wrong email"});
-    }
+    }   
   }
 });
+
 
 }
 
