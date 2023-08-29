@@ -7,7 +7,7 @@ let jwt = require("jsonwebtoken")
 const registerFarmer = (req, res)=>{
     console.log(req.body);
     farmerModel.findOne({email:req.body.email}, (err, result) => {});
-    let form = new farmerModel(req.body);
+    let form = new farmerModel({email:req.body.email, businessName:req.body.businessName, _id:req.body._id});
     form.save((err) => {
       if (err) {
         console.log(err);
