@@ -16,11 +16,12 @@ const registerFarmer = (req, res)=>{
         console.log("operation failed");
       } else {
         console.log("successful");
+        console.log(form._id)
         res.send({
           message: "Registered Successfully",
           businessName: req.body.businessName,
           email: req.body.email,
-          _id: req.body._id,
+          _id: form._id,
           status: true,
         });
       }
