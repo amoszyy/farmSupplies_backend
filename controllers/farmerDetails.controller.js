@@ -18,7 +18,9 @@ const registerFarmer = (req, res)=>{
         console.log("successful");
         res.send({
           message: "Registered Successfully",
-          details: (req.body.businessName, req.body.email, req.body._id),
+          businessName: req.body.businessName,
+          email: req.body.email,
+          _id: req.body._id,
           status: true,
         });
       }
